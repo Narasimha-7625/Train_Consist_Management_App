@@ -1,37 +1,40 @@
-import java.util.ArrayList;
-import java.util.List;
-class Train_Consist_Management_App {
+import java.util.HashSet;
+import java.util.Set;
+
+ class Train_Consist_Management_App {
 
     public static void main(String[] args) {
 
         // Welcome Message
         System.out.println("=== Train Consist Management App ===");
 
-        // Initialize train consist
-        List<String> trainConsist = new ArrayList<>();
+        // Initialize Set for unique bogie IDs
+        Set<String> bogieIds = new HashSet<>();
 
-        // Add passenger bogies
-        trainConsist.add("Sleeper Coach");
-        trainConsist.add("AC Chair Car");
-        trainConsist.add("First Class Coach");
+        // Add bogie IDs
+        System.out.println("\nAdding Bogies:");
 
-        System.out.println("\nAfter adding passenger bogies:");
-        System.out.println("Total bogies: " + trainConsist.size());
-        System.out.println("Train Consist: " + trainConsist);
+        addBogie(bogieIds, "BG101");
+        addBogie(bogieIds, "BG102");
+        addBogie(bogieIds, "BG103");
 
-        // Remove a bogie
-        trainConsist.remove("AC Chair Car");
+        // Attempt to add duplicate
+        addBogie(bogieIds, "BG101");
 
-        System.out.println("\nAfter removing AC Chair Car:");
-        System.out.println("Total bogies: " + trainConsist.size());
-        System.out.println("Train Consist: " + trainConsist);
+        // Display final bogie IDs
+        System.out.println("\nFinal Bogie IDs in Train:");
+        System.out.println(bogieIds);
 
-        // Check if a bogie exists
-        String searchBogie = "Sleeper Coach";
-        if (trainConsist.contains(searchBogie)) {
-            System.out.println("\n" + searchBogie + " is present in the train.");
+        // Total count
+        System.out.println("Total unique bogies: " + bogieIds.size());
+    }
+
+    // Method to safely add bogie
+    public static void addBogie(Set<String> bogieIds, String id) {
+        if (bogieIds.add(id)) {
+            System.out.println("Bogie " + id + " added successfully.");
         } else {
-            System.out.println("\n" + searchBogie + " is NOT present in the train.");
+            System.out.println("Duplicate ID detected! Bogie " + id + " NOT added.");
         }
     }
 }
