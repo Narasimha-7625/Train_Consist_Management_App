@@ -1,5 +1,4 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
 
  class Train_Consist_Management_App {
 
@@ -8,33 +7,36 @@ import java.util.Set;
         // Welcome Message
         System.out.println("=== Train Consist Management App ===");
 
-        // Initialize Set for unique bogie IDs
-        Set<String> bogieIds = new HashSet<>();
+        // Create LinkedList for ordered train consist
+        LinkedList<String> trainConsist = new LinkedList<>();
 
-        // Add bogie IDs
-        System.out.println("\nAdding Bogies:");
+        // Add bogies
+        trainConsist.add("Engine");
+        trainConsist.add("Sleeper Coach");
+        trainConsist.add("AC Coach");
+        trainConsist.add("Cargo Wagon");
+        trainConsist.add("Guard Coach");
 
-        addBogie(bogieIds, "BG101");
-        addBogie(bogieIds, "BG102");
-        addBogie(bogieIds, "BG103");
+        System.out.println("\nInitial Train Consist:");
+        System.out.println(trainConsist);
 
-        // Attempt to add duplicate
-        addBogie(bogieIds, "BG101");
+        // Insert Pantry Car at position 2 (index starts from 0)
+        trainConsist.add(2, "Pantry Car");
 
-        // Display final bogie IDs
-        System.out.println("\nFinal Bogie IDs in Train:");
-        System.out.println(bogieIds);
+        System.out.println("\nAfter adding Pantry Car at position 2:");
+        System.out.println(trainConsist);
 
-        // Total count
-        System.out.println("Total unique bogies: " + bogieIds.size());
-    }
+        // Remove first and last bogie
+        trainConsist.removeFirst();
+        trainConsist.removeLast();
 
-    // Method to safely add bogie
-    public static void addBogie(Set<String> bogieIds, String id) {
-        if (bogieIds.add(id)) {
-            System.out.println("Bogie " + id + " added successfully.");
-        } else {
-            System.out.println("Duplicate ID detected! Bogie " + id + " NOT added.");
+        System.out.println("\nAfter removing first and last bogies:");
+        System.out.println(trainConsist);
+
+        // Final consist
+        System.out.println("\nFinal Ordered Train Consist:");
+        for (String bogie : trainConsist) {
+            System.out.println(bogie);
         }
     }
 }
