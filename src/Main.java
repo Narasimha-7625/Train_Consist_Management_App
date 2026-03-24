@@ -1,5 +1,4 @@
-import java.util.LinkedList;
-
+import java.util.LinkedHashSet;
  class Train_Consist_Management_App {
 
     public static void main(String[] args) {
@@ -7,35 +6,24 @@ import java.util.LinkedList;
         // Welcome Message
         System.out.println("=== Train Consist Management App ===");
 
-        // Create LinkedList for ordered train consist
-        LinkedList<String> trainConsist = new LinkedList<>();
+        // Create LinkedHashSet for train formation
+        LinkedHashSet<String> trainFormation = new LinkedHashSet<>();
 
         // Add bogies
-        trainConsist.add("Engine");
-        trainConsist.add("Sleeper Coach");
-        trainConsist.add("AC Coach");
-        trainConsist.add("Cargo Wagon");
-        trainConsist.add("Guard Coach");
+        System.out.println("\nAttaching Bogies:");
 
-        System.out.println("\nInitial Train Consist:");
-        System.out.println(trainConsist);
+        trainFormation.add("Engine");
+        trainFormation.add("Sleeper Coach");
+        trainFormation.add("Cargo Wagon");
+        trainFormation.add("Guard Coach");
 
-        // Insert Pantry Car at position 2 (index starts from 0)
-        trainConsist.add(2, "Pantry Car");
+        // Attempt to add duplicate
+        System.out.println("\nAttempting to add duplicate bogie: Sleeper Coach");
+        trainFormation.add("Sleeper Coach"); // Will be ignored
 
-        System.out.println("\nAfter adding Pantry Car at position 2:");
-        System.out.println(trainConsist);
-
-        // Remove first and last bogie
-        trainConsist.removeFirst();
-        trainConsist.removeLast();
-
-        System.out.println("\nAfter removing first and last bogies:");
-        System.out.println(trainConsist);
-
-        // Final consist
-        System.out.println("\nFinal Ordered Train Consist:");
-        for (String bogie : trainConsist) {
+        // Display final formation
+        System.out.println("\nFinal Train Formation (Insertion Order Preserved):");
+        for (String bogie : trainFormation) {
             System.out.println(bogie);
         }
     }
